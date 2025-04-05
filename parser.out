@@ -1,0 +1,750 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> statement
+Rule 1     statement -> list_command
+Rule 2     statement -> booking_command
+Rule 3     statement -> status_command
+Rule 4     statement -> view_command
+Rule 5     list_command -> LIST event_type TICKETS IN MY AREA
+Rule 6     booking_command -> book_transport
+Rule 7     booking_command -> book_event
+Rule 8     book_transport -> BOOK TRAIN FROM location TO location ON DATE AT TIME FOR person
+Rule 9     book_transport -> BOOK AIRLINE FROM location TO location ON DATE AT TIME FOR person
+Rule 10    book_event -> BOOK event_name CONCERT FOR person
+Rule 11    book_event -> BOOK event_name FOOTBALL MATCH FOR person
+Rule 12    status_command -> CONFIRM event_type FOR person
+Rule 13    status_command -> PAY event_type FOR person
+Rule 14    status_command -> CANCEL event_type FOR person
+Rule 15    view_command -> VIEW BOOKINGS
+Rule 16    event_type -> CONCERT
+Rule 17    event_type -> FOOTBALL
+Rule 18    event_type -> TRAIN
+Rule 19    event_type -> AIRLINE
+Rule 20    location -> IDENTIFIER
+Rule 21    location -> STRING
+Rule 22    location -> location IDENTIFIER
+Rule 23    person -> IDENTIFIER
+Rule 24    person -> STRING
+Rule 25    person -> person IDENTIFIER
+Rule 26    event_name -> IDENTIFIER
+Rule 27    event_name -> STRING
+Rule 28    event_name -> event_name IDENTIFIER
+
+Terminals, with rules where they appear
+
+AIRLINE              : 9 19
+AREA                 : 5
+AT                   : 8 9
+BOOK                 : 8 9 10 11
+BOOKINGS             : 15
+CANCEL               : 14
+CONCERT              : 10 16
+CONFIRM              : 12
+DATE                 : 8 9
+FOOTBALL             : 11 17
+FOR                  : 8 9 10 11 12 13 14
+FROM                 : 8 9
+IDENTIFIER           : 20 22 23 25 26 28
+IN                   : 5
+LIST                 : 5
+MATCH                : 11
+MY                   : 5
+ON                   : 8 9
+PAY                  : 13
+STRING               : 21 24 27
+TICKETS              : 5
+TIME                 : 8 9
+TO                   : 8 9
+TRAIN                : 8 18
+VIEW                 : 15
+error                : 
+
+Nonterminals, with rules where they appear
+
+book_event           : 7
+book_transport       : 6
+booking_command      : 2
+event_name           : 10 11 28
+event_type           : 5 12 13 14
+list_command         : 1
+location             : 8 8 9 9 22
+person               : 8 9 10 11 12 13 14 25
+statement            : 0
+status_command       : 3
+view_command         : 4
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . statement
+    (1) statement -> . list_command
+    (2) statement -> . booking_command
+    (3) statement -> . status_command
+    (4) statement -> . view_command
+    (5) list_command -> . LIST event_type TICKETS IN MY AREA
+    (6) booking_command -> . book_transport
+    (7) booking_command -> . book_event
+    (12) status_command -> . CONFIRM event_type FOR person
+    (13) status_command -> . PAY event_type FOR person
+    (14) status_command -> . CANCEL event_type FOR person
+    (15) view_command -> . VIEW BOOKINGS
+    (8) book_transport -> . BOOK TRAIN FROM location TO location ON DATE AT TIME FOR person
+    (9) book_transport -> . BOOK AIRLINE FROM location TO location ON DATE AT TIME FOR person
+    (10) book_event -> . BOOK event_name CONCERT FOR person
+    (11) book_event -> . BOOK event_name FOOTBALL MATCH FOR person
+
+    LIST            shift and go to state 6
+    CONFIRM         shift and go to state 9
+    PAY             shift and go to state 10
+    CANCEL          shift and go to state 11
+    VIEW            shift and go to state 12
+    BOOK            shift and go to state 13
+
+    statement                      shift and go to state 1
+    list_command                   shift and go to state 2
+    booking_command                shift and go to state 3
+    status_command                 shift and go to state 4
+    view_command                   shift and go to state 5
+    book_transport                 shift and go to state 7
+    book_event                     shift and go to state 8
+
+state 1
+
+    (0) S' -> statement .
+
+
+
+state 2
+
+    (1) statement -> list_command .
+
+    $end            reduce using rule 1 (statement -> list_command .)
+
+
+state 3
+
+    (2) statement -> booking_command .
+
+    $end            reduce using rule 2 (statement -> booking_command .)
+
+
+state 4
+
+    (3) statement -> status_command .
+
+    $end            reduce using rule 3 (statement -> status_command .)
+
+
+state 5
+
+    (4) statement -> view_command .
+
+    $end            reduce using rule 4 (statement -> view_command .)
+
+
+state 6
+
+    (5) list_command -> LIST . event_type TICKETS IN MY AREA
+    (16) event_type -> . CONCERT
+    (17) event_type -> . FOOTBALL
+    (18) event_type -> . TRAIN
+    (19) event_type -> . AIRLINE
+
+    CONCERT         shift and go to state 15
+    FOOTBALL        shift and go to state 16
+    TRAIN           shift and go to state 17
+    AIRLINE         shift and go to state 18
+
+    event_type                     shift and go to state 14
+
+state 7
+
+    (6) booking_command -> book_transport .
+
+    $end            reduce using rule 6 (booking_command -> book_transport .)
+
+
+state 8
+
+    (7) booking_command -> book_event .
+
+    $end            reduce using rule 7 (booking_command -> book_event .)
+
+
+state 9
+
+    (12) status_command -> CONFIRM . event_type FOR person
+    (16) event_type -> . CONCERT
+    (17) event_type -> . FOOTBALL
+    (18) event_type -> . TRAIN
+    (19) event_type -> . AIRLINE
+
+    CONCERT         shift and go to state 15
+    FOOTBALL        shift and go to state 16
+    TRAIN           shift and go to state 17
+    AIRLINE         shift and go to state 18
+
+    event_type                     shift and go to state 19
+
+state 10
+
+    (13) status_command -> PAY . event_type FOR person
+    (16) event_type -> . CONCERT
+    (17) event_type -> . FOOTBALL
+    (18) event_type -> . TRAIN
+    (19) event_type -> . AIRLINE
+
+    CONCERT         shift and go to state 15
+    FOOTBALL        shift and go to state 16
+    TRAIN           shift and go to state 17
+    AIRLINE         shift and go to state 18
+
+    event_type                     shift and go to state 20
+
+state 11
+
+    (14) status_command -> CANCEL . event_type FOR person
+    (16) event_type -> . CONCERT
+    (17) event_type -> . FOOTBALL
+    (18) event_type -> . TRAIN
+    (19) event_type -> . AIRLINE
+
+    CONCERT         shift and go to state 15
+    FOOTBALL        shift and go to state 16
+    TRAIN           shift and go to state 17
+    AIRLINE         shift and go to state 18
+
+    event_type                     shift and go to state 21
+
+state 12
+
+    (15) view_command -> VIEW . BOOKINGS
+
+    BOOKINGS        shift and go to state 22
+
+
+state 13
+
+    (8) book_transport -> BOOK . TRAIN FROM location TO location ON DATE AT TIME FOR person
+    (9) book_transport -> BOOK . AIRLINE FROM location TO location ON DATE AT TIME FOR person
+    (10) book_event -> BOOK . event_name CONCERT FOR person
+    (11) book_event -> BOOK . event_name FOOTBALL MATCH FOR person
+    (26) event_name -> . IDENTIFIER
+    (27) event_name -> . STRING
+    (28) event_name -> . event_name IDENTIFIER
+
+    TRAIN           shift and go to state 23
+    AIRLINE         shift and go to state 24
+    IDENTIFIER      shift and go to state 26
+    STRING          shift and go to state 27
+
+    event_name                     shift and go to state 25
+
+state 14
+
+    (5) list_command -> LIST event_type . TICKETS IN MY AREA
+
+    TICKETS         shift and go to state 28
+
+
+state 15
+
+    (16) event_type -> CONCERT .
+
+    TICKETS         reduce using rule 16 (event_type -> CONCERT .)
+    FOR             reduce using rule 16 (event_type -> CONCERT .)
+
+
+state 16
+
+    (17) event_type -> FOOTBALL .
+
+    TICKETS         reduce using rule 17 (event_type -> FOOTBALL .)
+    FOR             reduce using rule 17 (event_type -> FOOTBALL .)
+
+
+state 17
+
+    (18) event_type -> TRAIN .
+
+    TICKETS         reduce using rule 18 (event_type -> TRAIN .)
+    FOR             reduce using rule 18 (event_type -> TRAIN .)
+
+
+state 18
+
+    (19) event_type -> AIRLINE .
+
+    TICKETS         reduce using rule 19 (event_type -> AIRLINE .)
+    FOR             reduce using rule 19 (event_type -> AIRLINE .)
+
+
+state 19
+
+    (12) status_command -> CONFIRM event_type . FOR person
+
+    FOR             shift and go to state 29
+
+
+state 20
+
+    (13) status_command -> PAY event_type . FOR person
+
+    FOR             shift and go to state 30
+
+
+state 21
+
+    (14) status_command -> CANCEL event_type . FOR person
+
+    FOR             shift and go to state 31
+
+
+state 22
+
+    (15) view_command -> VIEW BOOKINGS .
+
+    $end            reduce using rule 15 (view_command -> VIEW BOOKINGS .)
+
+
+state 23
+
+    (8) book_transport -> BOOK TRAIN . FROM location TO location ON DATE AT TIME FOR person
+
+    FROM            shift and go to state 32
+
+
+state 24
+
+    (9) book_transport -> BOOK AIRLINE . FROM location TO location ON DATE AT TIME FOR person
+
+    FROM            shift and go to state 33
+
+
+state 25
+
+    (10) book_event -> BOOK event_name . CONCERT FOR person
+    (11) book_event -> BOOK event_name . FOOTBALL MATCH FOR person
+    (28) event_name -> event_name . IDENTIFIER
+
+    CONCERT         shift and go to state 34
+    FOOTBALL        shift and go to state 35
+    IDENTIFIER      shift and go to state 36
+
+
+state 26
+
+    (26) event_name -> IDENTIFIER .
+
+    CONCERT         reduce using rule 26 (event_name -> IDENTIFIER .)
+    FOOTBALL        reduce using rule 26 (event_name -> IDENTIFIER .)
+    IDENTIFIER      reduce using rule 26 (event_name -> IDENTIFIER .)
+
+
+state 27
+
+    (27) event_name -> STRING .
+
+    CONCERT         reduce using rule 27 (event_name -> STRING .)
+    FOOTBALL        reduce using rule 27 (event_name -> STRING .)
+    IDENTIFIER      reduce using rule 27 (event_name -> STRING .)
+
+
+state 28
+
+    (5) list_command -> LIST event_type TICKETS . IN MY AREA
+
+    IN              shift and go to state 37
+
+
+state 29
+
+    (12) status_command -> CONFIRM event_type FOR . person
+    (23) person -> . IDENTIFIER
+    (24) person -> . STRING
+    (25) person -> . person IDENTIFIER
+
+    IDENTIFIER      shift and go to state 39
+    STRING          shift and go to state 40
+
+    person                         shift and go to state 38
+
+state 30
+
+    (13) status_command -> PAY event_type FOR . person
+    (23) person -> . IDENTIFIER
+    (24) person -> . STRING
+    (25) person -> . person IDENTIFIER
+
+    IDENTIFIER      shift and go to state 39
+    STRING          shift and go to state 40
+
+    person                         shift and go to state 41
+
+state 31
+
+    (14) status_command -> CANCEL event_type FOR . person
+    (23) person -> . IDENTIFIER
+    (24) person -> . STRING
+    (25) person -> . person IDENTIFIER
+
+    IDENTIFIER      shift and go to state 39
+    STRING          shift and go to state 40
+
+    person                         shift and go to state 42
+
+state 32
+
+    (8) book_transport -> BOOK TRAIN FROM . location TO location ON DATE AT TIME FOR person
+    (20) location -> . IDENTIFIER
+    (21) location -> . STRING
+    (22) location -> . location IDENTIFIER
+
+    IDENTIFIER      shift and go to state 44
+    STRING          shift and go to state 45
+
+    location                       shift and go to state 43
+
+state 33
+
+    (9) book_transport -> BOOK AIRLINE FROM . location TO location ON DATE AT TIME FOR person
+    (20) location -> . IDENTIFIER
+    (21) location -> . STRING
+    (22) location -> . location IDENTIFIER
+
+    IDENTIFIER      shift and go to state 44
+    STRING          shift and go to state 45
+
+    location                       shift and go to state 46
+
+state 34
+
+    (10) book_event -> BOOK event_name CONCERT . FOR person
+
+    FOR             shift and go to state 47
+
+
+state 35
+
+    (11) book_event -> BOOK event_name FOOTBALL . MATCH FOR person
+
+    MATCH           shift and go to state 48
+
+
+state 36
+
+    (28) event_name -> event_name IDENTIFIER .
+
+    CONCERT         reduce using rule 28 (event_name -> event_name IDENTIFIER .)
+    FOOTBALL        reduce using rule 28 (event_name -> event_name IDENTIFIER .)
+    IDENTIFIER      reduce using rule 28 (event_name -> event_name IDENTIFIER .)
+
+
+state 37
+
+    (5) list_command -> LIST event_type TICKETS IN . MY AREA
+
+    MY              shift and go to state 49
+
+
+state 38
+
+    (12) status_command -> CONFIRM event_type FOR person .
+    (25) person -> person . IDENTIFIER
+
+    $end            reduce using rule 12 (status_command -> CONFIRM event_type FOR person .)
+    IDENTIFIER      shift and go to state 50
+
+
+state 39
+
+    (23) person -> IDENTIFIER .
+
+    IDENTIFIER      reduce using rule 23 (person -> IDENTIFIER .)
+    $end            reduce using rule 23 (person -> IDENTIFIER .)
+
+
+state 40
+
+    (24) person -> STRING .
+
+    IDENTIFIER      reduce using rule 24 (person -> STRING .)
+    $end            reduce using rule 24 (person -> STRING .)
+
+
+state 41
+
+    (13) status_command -> PAY event_type FOR person .
+    (25) person -> person . IDENTIFIER
+
+    $end            reduce using rule 13 (status_command -> PAY event_type FOR person .)
+    IDENTIFIER      shift and go to state 50
+
+
+state 42
+
+    (14) status_command -> CANCEL event_type FOR person .
+    (25) person -> person . IDENTIFIER
+
+    $end            reduce using rule 14 (status_command -> CANCEL event_type FOR person .)
+    IDENTIFIER      shift and go to state 50
+
+
+state 43
+
+    (8) book_transport -> BOOK TRAIN FROM location . TO location ON DATE AT TIME FOR person
+    (22) location -> location . IDENTIFIER
+
+    TO              shift and go to state 51
+    IDENTIFIER      shift and go to state 52
+
+
+state 44
+
+    (20) location -> IDENTIFIER .
+
+    TO              reduce using rule 20 (location -> IDENTIFIER .)
+    IDENTIFIER      reduce using rule 20 (location -> IDENTIFIER .)
+    ON              reduce using rule 20 (location -> IDENTIFIER .)
+
+
+state 45
+
+    (21) location -> STRING .
+
+    TO              reduce using rule 21 (location -> STRING .)
+    IDENTIFIER      reduce using rule 21 (location -> STRING .)
+    ON              reduce using rule 21 (location -> STRING .)
+
+
+state 46
+
+    (9) book_transport -> BOOK AIRLINE FROM location . TO location ON DATE AT TIME FOR person
+    (22) location -> location . IDENTIFIER
+
+    TO              shift and go to state 53
+    IDENTIFIER      shift and go to state 52
+
+
+state 47
+
+    (10) book_event -> BOOK event_name CONCERT FOR . person
+    (23) person -> . IDENTIFIER
+    (24) person -> . STRING
+    (25) person -> . person IDENTIFIER
+
+    IDENTIFIER      shift and go to state 39
+    STRING          shift and go to state 40
+
+    person                         shift and go to state 54
+
+state 48
+
+    (11) book_event -> BOOK event_name FOOTBALL MATCH . FOR person
+
+    FOR             shift and go to state 55
+
+
+state 49
+
+    (5) list_command -> LIST event_type TICKETS IN MY . AREA
+
+    AREA            shift and go to state 56
+
+
+state 50
+
+    (25) person -> person IDENTIFIER .
+
+    IDENTIFIER      reduce using rule 25 (person -> person IDENTIFIER .)
+    $end            reduce using rule 25 (person -> person IDENTIFIER .)
+
+
+state 51
+
+    (8) book_transport -> BOOK TRAIN FROM location TO . location ON DATE AT TIME FOR person
+    (20) location -> . IDENTIFIER
+    (21) location -> . STRING
+    (22) location -> . location IDENTIFIER
+
+    IDENTIFIER      shift and go to state 44
+    STRING          shift and go to state 45
+
+    location                       shift and go to state 57
+
+state 52
+
+    (22) location -> location IDENTIFIER .
+
+    TO              reduce using rule 22 (location -> location IDENTIFIER .)
+    IDENTIFIER      reduce using rule 22 (location -> location IDENTIFIER .)
+    ON              reduce using rule 22 (location -> location IDENTIFIER .)
+
+
+state 53
+
+    (9) book_transport -> BOOK AIRLINE FROM location TO . location ON DATE AT TIME FOR person
+    (20) location -> . IDENTIFIER
+    (21) location -> . STRING
+    (22) location -> . location IDENTIFIER
+
+    IDENTIFIER      shift and go to state 44
+    STRING          shift and go to state 45
+
+    location                       shift and go to state 58
+
+state 54
+
+    (10) book_event -> BOOK event_name CONCERT FOR person .
+    (25) person -> person . IDENTIFIER
+
+    $end            reduce using rule 10 (book_event -> BOOK event_name CONCERT FOR person .)
+    IDENTIFIER      shift and go to state 50
+
+
+state 55
+
+    (11) book_event -> BOOK event_name FOOTBALL MATCH FOR . person
+    (23) person -> . IDENTIFIER
+    (24) person -> . STRING
+    (25) person -> . person IDENTIFIER
+
+    IDENTIFIER      shift and go to state 39
+    STRING          shift and go to state 40
+
+    person                         shift and go to state 59
+
+state 56
+
+    (5) list_command -> LIST event_type TICKETS IN MY AREA .
+
+    $end            reduce using rule 5 (list_command -> LIST event_type TICKETS IN MY AREA .)
+
+
+state 57
+
+    (8) book_transport -> BOOK TRAIN FROM location TO location . ON DATE AT TIME FOR person
+    (22) location -> location . IDENTIFIER
+
+    ON              shift and go to state 60
+    IDENTIFIER      shift and go to state 52
+
+
+state 58
+
+    (9) book_transport -> BOOK AIRLINE FROM location TO location . ON DATE AT TIME FOR person
+    (22) location -> location . IDENTIFIER
+
+    ON              shift and go to state 61
+    IDENTIFIER      shift and go to state 52
+
+
+state 59
+
+    (11) book_event -> BOOK event_name FOOTBALL MATCH FOR person .
+    (25) person -> person . IDENTIFIER
+
+    $end            reduce using rule 11 (book_event -> BOOK event_name FOOTBALL MATCH FOR person .)
+    IDENTIFIER      shift and go to state 50
+
+
+state 60
+
+    (8) book_transport -> BOOK TRAIN FROM location TO location ON . DATE AT TIME FOR person
+
+    DATE            shift and go to state 62
+
+
+state 61
+
+    (9) book_transport -> BOOK AIRLINE FROM location TO location ON . DATE AT TIME FOR person
+
+    DATE            shift and go to state 63
+
+
+state 62
+
+    (8) book_transport -> BOOK TRAIN FROM location TO location ON DATE . AT TIME FOR person
+
+    AT              shift and go to state 64
+
+
+state 63
+
+    (9) book_transport -> BOOK AIRLINE FROM location TO location ON DATE . AT TIME FOR person
+
+    AT              shift and go to state 65
+
+
+state 64
+
+    (8) book_transport -> BOOK TRAIN FROM location TO location ON DATE AT . TIME FOR person
+
+    TIME            shift and go to state 66
+
+
+state 65
+
+    (9) book_transport -> BOOK AIRLINE FROM location TO location ON DATE AT . TIME FOR person
+
+    TIME            shift and go to state 67
+
+
+state 66
+
+    (8) book_transport -> BOOK TRAIN FROM location TO location ON DATE AT TIME . FOR person
+
+    FOR             shift and go to state 68
+
+
+state 67
+
+    (9) book_transport -> BOOK AIRLINE FROM location TO location ON DATE AT TIME . FOR person
+
+    FOR             shift and go to state 69
+
+
+state 68
+
+    (8) book_transport -> BOOK TRAIN FROM location TO location ON DATE AT TIME FOR . person
+    (23) person -> . IDENTIFIER
+    (24) person -> . STRING
+    (25) person -> . person IDENTIFIER
+
+    IDENTIFIER      shift and go to state 39
+    STRING          shift and go to state 40
+
+    person                         shift and go to state 70
+
+state 69
+
+    (9) book_transport -> BOOK AIRLINE FROM location TO location ON DATE AT TIME FOR . person
+    (23) person -> . IDENTIFIER
+    (24) person -> . STRING
+    (25) person -> . person IDENTIFIER
+
+    IDENTIFIER      shift and go to state 39
+    STRING          shift and go to state 40
+
+    person                         shift and go to state 71
+
+state 70
+
+    (8) book_transport -> BOOK TRAIN FROM location TO location ON DATE AT TIME FOR person .
+    (25) person -> person . IDENTIFIER
+
+    $end            reduce using rule 8 (book_transport -> BOOK TRAIN FROM location TO location ON DATE AT TIME FOR person .)
+    IDENTIFIER      shift and go to state 50
+
+
+state 71
+
+    (9) book_transport -> BOOK AIRLINE FROM location TO location ON DATE AT TIME FOR person .
+    (25) person -> person . IDENTIFIER
+
+    $end            reduce using rule 9 (book_transport -> BOOK AIRLINE FROM location TO location ON DATE AT TIME FOR person .)
+    IDENTIFIER      shift and go to state 50
+
