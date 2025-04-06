@@ -1,7 +1,0 @@
-// AST
-digraph {
-	node [fillcolor="#f0f8ff" fixedsize=true fontname=Arial fontsize=10 height=0.9 shape=ellipse style=filled width=1.8]
-	2366761704456 [label=LIST]
-	"2366761704456_2366761863152" [label=concert]
-	2366761704456 -> "2366761704456_2366761863152"
-}
